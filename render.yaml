@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: morsad-web
+    runtime: python
+    plan: free
+    region: frankfurt
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn run:app
+    envVars:
+      - key: MIRSAD_DEBUG
+        value: "0"
+      - key: MIRSAD_SECRET_KEY
+        generateValue: true
