@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>مرصاد ويب | منصة تقييم أمن المواقع</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <style>.history-row{color:inherit;text-decoration:none}.history-row:hover{background:#f1f9f9}.platform-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:-34px;position:relative}.platform-stats div{background:#fff;border:1px solid #d8e7ea;border-radius:12px;padding:14px 18px;box-shadow:0 7px 17px #083b5612}.platform-stats strong{display:block;color:#087e8b;font-size:1.3rem}.platform-stats span{font-size:.82rem;color:#63758a}.service-catalog{padding-top:72px}.catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.catalog-grid article{min-height:155px;background:#fff;border:1px solid #d8e7ea;border-radius:14px;padding:18px;position:relative;overflow:hidden}.catalog-grid article:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:#0da5a5}.catalog-grid b{font-size:.75rem;color:#0da5a5}.catalog-grid h3{font-size:1.02rem;margin:8px 0}.catalog-grid p{font-size:.85rem;color:#63758a;margin:0}@media(max-width:700px){.platform-stats,.catalog-grid{grid-template-columns:1fr;margin-top:18px}}</style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="/"><span class="brand-mark">◈</span><span>مرصاد <small>ويب</small></span></a>
+        <span class="nav-tag">إعداد وتنفيذ: أمجد عبد الحكيم علي السميري</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">مشروع تخرج في الأمن السيبراني</p>
+            <h1>راقب إعدادات موقعك.<br><span>وعزّز حمايته.</span></h1>
+            <p class="hero-copy">مرصاد ويب منصة دفاعية تساعد مالكي المواقع على فهم وضعهم الأمني عبر فحوصات إعدادات غير تدخّلية وتوصيات واضحة قابلة للتنفيذ.</p>
+            <div class="hero-points"><span>◉ فحص مصرح به</span><span>◉ تحليل واضح</span><span>◉ تقرير عربي</span></div>
+          </div>
+          <div class="radar-card" aria-hidden="true"><div class="radar-grid"></div><div class="radar-sweep"></div><div class="radar-dot dot-one"></div><div class="radar-dot dot-two"></div><div class="radar-center">◈</div></div>
+        </div>
+      </section>
+
+      <section class="container platform-stats" aria-label="ملخص المنصة">
+        <div><strong>{{ summary.total or 0 }}</strong><span>فحص محفوظ</span></div>
+        <div><strong>{{ summary.average or 0 }}/100</strong><span>متوسط درجة الأمان</span></div>
+        <div><strong>9</strong><span>مؤشرات أمنية مقاسة</span></div>
+      </section>
+
+      <section class="container scan-area">
+        <div class="section-heading"><p class="eyebrow">فحص جديد</p><h2>ابدأ تقييم موقعك</h2><p>أدخل نطاقًا عامًا أو رابطًا كاملًا للموقع المصرح لك بفحصه.</p></div>
+        <div class="scan-card">
+          {% if error %}<div class="alert alert-danger mb-4">{{ error }}</div>{% endif %}
+          <form method="post" action="/scan">
+            <label for="url" class="field-label">رابط الموقع أو النطاق</label>
+            <div class="url-input"><span>⌁</span><input type="text" id="url" name="url" placeholder="example.com أو https://example.com" required autocomplete="url"></div>
+            <label class="authorization"><input type="checkbox" id="authorized" name="authorized" value="yes" required><span>أؤكد أنني أملك الموقع أو لدي تصريح صريح ومحدد لإجراء هذا الفحص.</span></label>
+            <button type="submit" class="primary-button">ابدأ الفحص الآمن <span>←</span></button>
+          </form>
+          <p class="safety-note">لا ينفذ مرصاد ويب الاستغلال أو التخمين أو مسح المنافذ؛ الفحص مقتصر على طلبات قراءة وإعدادات أمن الويب الأساسية.</p>
+        </div>
+      </section>
+
+      <section class="container methodology">
+        <div class="section-heading"><p class="eyebrow">منهجية المنصة</p><h2>ماذا يقيس مرصاد ويب؟</h2></div>
+        <div class="feature-grid">
+          <article><span class="feature-icon">⌁</span><h3>التشفير والاتصال</h3><p>يتحقق من HTTPS، التحويل الآمن، وصلاحية شهادة TLS.</p></article>
+          <article><span class="feature-icon">▣</span><h3>إعدادات المتصفح</h3><p>يراجع رؤوس الحماية والكوكيز التي تقلل المخاطر الشائعة.</p></article>
+          <article><span class="feature-icon">◉</span><h3>الإشارات التنظيمية</h3><p>يعرض DNS وملفات robots وsitemap ومعلومات الخادم بصورة مفهومة.</p></article>
+        </div>
+      </section>
+
+      <section class="container service-catalog">
+        <div class="section-heading"><p class="eyebrow">خدمات المنصة</p><h2>تغطية الفحص في مرصاد ويب</h2><p>كل خدمة موضحة للمستخدم والدكتور، مع نتائجها وتوصياتها ضمن تقرير واحد.</p></div>
+        <div class="catalog-grid">
+          <article><b>01</b><h3>HTTPS والتحويل الآمن</h3><p>يتحقق من توفر HTTPS ومن انتقال الزيارة إلى اتصال مشفر.</p></article>
+          <article><b>02</b><h3>شهادة TLS</h3><p>يفحص الصلاحية، تاريخ الانتهاء، الجهة المصدرة، وحجم المفتاح عند توفره.</p></article>
+          <article><b>03</b><h3>رؤوس الحماية</h3><p>يقيس HSTS وCSP والحماية من الإطارات وتخمين المحتوى وسياسات المتصفح.</p></article>
+          <article><b>04</b><h3>تحليل CSP وCORS</h3><p>ينبه لتوجيهات CSP غير الآمنة والسماح الواسع بالمصادر عبر CORS.</p></article>
+          <article><b>05</b><h3>حماية الكوكيز</h3><p>يراجع خصائص Secure وHttpOnly وSameSite لملفات الارتباط.</p></article>
+          <article><b>06</b><h3>DNS ومعلومات الخادم</h3><p>يعرض عناوين النطاق ومؤشرات تسريب إصدار الخادم.</p></article>
+          <article><b>07</b><h3>ملفات الإفصاح</h3><p>يتحقق من robots.txt وsitemap.xml وsecurity.txt كإشارات تنظيمية.</p></article>
+          <article><b>08</b><h3>مسارات الإدارة المحدودة</h3><p>يتحقق بقراءات HEAD من مسارات إدارية شائعة دون استغلال أو تحميل محتوى.</p></article>
+          <article><b>09</b><h3>التحليل والمتابعة</h3><p>يحسب الدرجة والخطورة والتوصيات، ويحفظ التقارير ويقارن التحسن بين الفحوصات.</p></article>
+        </div>
+      </section>
+
+      <section class="container history-section">
+        <div class="section-heading row-heading"><div><p class="eyebrow">سجل محلي</p><h2>آخر الفحوصات</h2></div><span class="muted">محفوظة على هذا الجهاز</span></div>
+        {% if history %}
+        <div class="history-table">
+          {% for item in history %}<a class="history-row" href="/scan/{{ item.id }}"><div><strong>{{ item.target }}</strong><small>{{ item.created_at }} · فتح التقرير</small></div><span class="score-badge">{{ item.score }}/100</span><span class="risk-chip risk-{{ item.risk|lower }}">{{ item.risk_label }}</span></a>{% endfor %}
+        </div>
+        {% else %}<div class="empty-state">لا توجد فحوصات محفوظة بعد. ابدأ بفحص مصرح به لإنشاء أول تقرير.</div>{% endif %}
+      </section>
+    </main>
+    <footer><strong>مرصاد ويب</strong> — مشروع تخرج في الأمن السيبراني<br>إعداد وتنفيذ: <strong>أمجد عبد الحكيم علي السميري</strong></footer>
+  </body>
+</html>
